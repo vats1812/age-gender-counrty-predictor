@@ -12,7 +12,7 @@ function Card(props) {
   } else if (gender === "female") {
     gender_avtar = <IoMdFemale size={"5rem"} color="#D95281" />;
   }
-  
+
   return (
     <div>
       <div className="card_cont">
@@ -21,14 +21,18 @@ function Card(props) {
           <h1>{name}</h1>
         </div>
         <div className="age">
-          <h3>Age:{age} </h3>
+          <h3>Age: {age === "" ? "" : age === null ? "Ageless🤣" : age} </h3>
         </div>
         <div className="gender">
           <h3>
             Gender:{" "}
-            {gender === "" ? "" : gender[0].toUpperCase() + gender.substring(1)}
+            {gender === ""
+              ? ""
+              : gender === null
+              ? "No Gender🤣"
+              : gender[0].toUpperCase() + gender.substring(1)}
           </h3>
-          {gender_prob === undefined ? (
+          {gender_prob === undefined || gender === null ? (
             ""
           ) : (
             <PieChart
@@ -40,7 +44,9 @@ function Card(props) {
             />
           )}
 
-          {gender_prob === undefined ? "" : gender_prob.toFixed(2)}
+          {gender_prob === undefined || gender === null
+            ? ""
+            : gender_prob.toFixed(2)}
         </div>
         <div className="country">
           <h3>Coutry: {country === undefined ? "Countryless😔" : country} </h3>
